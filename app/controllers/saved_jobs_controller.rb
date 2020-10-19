@@ -1,0 +1,2 @@
+class SavedJobsController < ApplicationController
+end
