@@ -1,0 +1,14 @@
+<h1><%= @user.full_name %></h1>
+
+<p><bold>Username: </bold><%= @user.username %></p>
+<p><bold>Email: </bold><%= @user.email %></p>
+<p><bold>Age: </bold><%= @user.age %></p>
+<p><bold>Address: </bold><%= @user.address %></p>
+<p><bold>Phone: </bold><%= @user.phone_number %></p>
+
+<h3>Past experience</h3>
+<ul>
+<% @user.resumes.each do |job| %>
+    <li><%= job.job_title %> (<%=job.description %>)</li>
+<% end %>
+</ul>
