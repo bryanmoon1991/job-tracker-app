@@ -1,0 +1,13 @@
+<%= form_for :session do |f| %>
+  <%= f.label :keywords %>
+  <%= f.text_field :keywords %>
+  <%= f.label :location %>
+  <%= f.text_field :location %>
+  <%= f.label :radius %>
+  <%= f.text_field :radius %>
+  <%= f.label :salary %>
+  <%= f.text_field :salary %>
+  <%= f.label :page %>
+  <%= f.number_field :page %>  
+  <%= f.submit 'search' %>
+<% end %> 
