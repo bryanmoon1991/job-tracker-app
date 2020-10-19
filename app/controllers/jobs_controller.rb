@@ -4,6 +4,10 @@ class JobsController < ApplicationController
 
     def index
         @jobs = Job.all
+        if params[:q]
+            @search_term = params[:q]
+            @results = search(@search_term)
+        end
     end
 
     def new
@@ -14,26 +18,21 @@ class JobsController < ApplicationController
         @job = Job.find(params[:id])
     end
 
-    def create        
-        url = 'https://jooble.org/api/#{ENV["JOOBLE_KEY"]}'
+    def search(query)        
+        url = "https://jooble.org/api/#{ENV['JOOBLE_KEY']}"
         #create uri for request
-        uri = URI.parse(url + key)
+        uri = URI.parse(url)
         #prepare post data
-        post_args = job_params
+        post_args = { 'keywords': query }
         #send request to the server
         http = Net::HTTP.new(uri.host, uri.port)
         #for https
         http.use_ssl = true
         request = Net::HTTP::Post.new(uri.request_uri, 'Content-Type' => 'application/json')
         request.body = post_args.to_json
-        
         #send request to the server
-        
         response = http.request(request)
-        
-    end
-    
-    def search(query)
+        JSON.parse(response.body)
     end
 
     private

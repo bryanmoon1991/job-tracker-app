@@ -5,3 +5,15 @@
     <li><%= link_to job.title, job_path(job) %></li>
 <% end %>
 </ul>
+
+<form>
+    <input type="text" name="q" placeholder="search" value="<%= @seach_term%>" />
+    <button type="submit">Submit!</button>
+</form>
+
+<p>You searched <%= @search_term %></p>
+
+<ul><% @results['jobs'].each do |job| %>
+    <li><%= job['title'] %></li>
+    <%end%>
+</ul>
