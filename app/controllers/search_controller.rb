@@ -2,6 +2,9 @@ require 'net/http'
 Dotenv.load('./.env')
 
 class SearchController < ApplicationController
+
+    
+
     def create
         url = "https://jooble.org/api/#{ENV['JOOBLE_KEY']}"
         uri = URI.parse(url)
@@ -15,7 +18,8 @@ class SearchController < ApplicationController
         request = Net::HTTP::Post.new(uri.request_uri, 'Content-Type' => 'application/json')
         request.body = post_args.to_json
         #send request to the server
-        @response = http.request(request) 
+        @response = http.request(request)
+      
         # byebug
         render :result
     end

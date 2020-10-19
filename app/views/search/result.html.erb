@@ -1,1 +1,13 @@
-<%= @response.body %>
+<% JSON.parse(@response.body)["jobs"].each do |job| %>
+<fieldset><legend><%= job["title"] %></legend>
+<ul>
+<li><%= job["location"] %></li>
+<li><%= job["snippet"] %></li>
+<li><%= job["salary"] %></li>
+<li><%= job["source"] %></li>
+<li><%= job["type"] %></li>
+<li><%= job["link"] %></li>
+<li><%= job["updated"] %></li>
+</ul>
+</fieldset>
+<% end %>
