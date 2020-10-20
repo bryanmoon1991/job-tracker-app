@@ -1,5 +1,5 @@
-require 'net/http'
 class JobsController < ApplicationController
+    require 'net/http'
 
 
     def index
@@ -19,17 +19,8 @@ class JobsController < ApplicationController
     end
     
     def create
-        # job_title = params[:job_title]
-        # location = params[:location]
-        # snippet = params[:snippet]
-        # salary = params[:salary]
-        # source = params[:source]
-        # job_type = params[:type]
-        # link = params[:link]
-        # updated = params[:updated]
-
         new_job = Job.create(job_params)
-        SavedJob.create(job:new_job, user:@current_user)
+        SavedJob.create(user:@current_user, job:new_job)
         redirect_to job_path(new_job)
     end
     
