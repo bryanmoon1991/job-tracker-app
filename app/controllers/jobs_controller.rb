@@ -20,6 +20,7 @@ class JobsController < ApplicationController
     
     def create
         new_job = Job.create(job_params)
+        SavedJob.create(user:@current_user, job:new_job)
         redirect_to job_path(new_job)
     end
     
