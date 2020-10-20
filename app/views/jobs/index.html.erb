@@ -11,9 +11,19 @@
     <button type="submit">Submit!</button>
 </form>
 
-<p>You searched <%= @search_term %></p>
-
-<ul><% @results['jobs'].each do |job| %>
-    <li><%= job['title'] %></li>
-    <%end%>
+<% if @results %>
+<p>You searched "<%= @search_term %>"</p>
+<ul>
+        <% @results['jobs'].each do |job| %>
+            <li>
+                <%= job['title'] %> (<%= job['location']%>)
+                <%= form_with url: jobs_path, method: :post do |f| %>
+                  <%= f.hidden_field :job_id, value: job['id'] %>
+                  <%= f.submit 'Save' %>
+                <% end %>
+            </li>
+        <%end%>
 </ul>
+<% end %>
+
+<pre><%= @results['jobs'].map %></pre>
