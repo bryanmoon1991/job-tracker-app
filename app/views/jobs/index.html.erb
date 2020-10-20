@@ -13,7 +13,8 @@
 
 <p>You searched <%= @search_term %></p>
 
-<ul><% @results['jobs'].each do |job| %>
-    <li><%= job['title'] %></li>
+<ul>
+    <% @results['jobs'].each do |job| %>
+    <li><%= job['title'] %> (<%= job['location']%>)</li>
     <%end%>
 </ul>
