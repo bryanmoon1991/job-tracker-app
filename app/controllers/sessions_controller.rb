@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
             session[:user_id] = @user.id 
             redirect_to jobs_path
         else 
-            byebug
+            
             flash[:error] = "Password or Username did not match"
             redirect_to new_login_path
         end 

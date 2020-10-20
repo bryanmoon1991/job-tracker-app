@@ -1,5 +1,5 @@
+require 'net/http'
 class JobsController < ApplicationController
-    require 'net/http'
 
 
     def index
@@ -29,7 +29,7 @@ class JobsController < ApplicationController
         # updated = params[:updated]
 
         new_job = Job.create(job_params)
-        byebug
+        SavedJob.create(job:new_job, user:@current_user)
         redirect_to job_path(new_job)
     end
     
