@@ -3,7 +3,8 @@ class JobsController < ApplicationController
 
 
     def index
-        @jobs = Job.all
+        @user = User.find(session[:user_id])
+        @jobs = 
         if params[:q]
             @search_term = params[:q]
             @results = search(@search_term)
@@ -19,9 +20,14 @@ class JobsController < ApplicationController
     end
     
     def create
-        new_job = Job.create(job_params)
-        SavedJob.create(user:@current_user, job:new_job)
-        redirect_to job_path(new_job)
+        if new_job = Job.find_by(jooble_id: params[:jooble_id])
+            SavedJob.create(user:@current_user, job: new_job)
+            redirect_to job_path(new_job)
+        else
+            new_job = Job.create(job_params)
+            SavedJob.create(user:@current_user, job: new_job)
+            redirect_to job_path(new_job)
+        end
     end
     
 
@@ -45,7 +51,7 @@ class JobsController < ApplicationController
     private
     
     def job_params
-        params.permit(:title, :location, :snippet, :salary, :source, :type, :link, :updated)
+        params.permit(:title, :location, :snippet, :salary, :source, :type, :link, :updated, :jooble_id)
     end
 
 end

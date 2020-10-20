@@ -16,6 +16,13 @@ class ResumesController < ApplicationController
         @user = User.find(session[:user_id])
     end
     
+    def destroy
+        @user = User.find(session[:user_id])
+        @resume = Resume.find(params[:id])
+        @resume.destroy
+        redirect_to user_path(@user)
+    end
+    
     private
     
     def resume_params

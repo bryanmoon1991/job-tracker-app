@@ -1,0 +1,22 @@
+<h1>Apply to <%= @saved_job.job.title %></h1>
+
+
+<h3>Your Resume</h3>
+<% @saved_job.user.resumes.each do |resume| %>
+    
+    <%= form_for resume do |f| %>
+        <%= f.label :job_title %>
+        <%= f.text_field :job_title %><br>
+        
+        <%= f.label :description %>
+        <%= f.text_field :description %><br>
+        
+        <%= f.label :reference %>
+        <%= f.text_field :reference %><br>
+        ==========================
+    <% end %>
+    
+<% end %>
+
+Email: <%= text_field_tag :email %>
+<%= button_to 'Submit' %>

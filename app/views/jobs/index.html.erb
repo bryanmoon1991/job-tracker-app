@@ -8,9 +8,15 @@
         <%= link_to "Log In", new_login_path %>
     <% end %>
 
+
+<h2>Your Saved Jobs</h2>
 <ul>
-<% @jobs.each do |job| %>
-    <li><%= link_to job.title, job_path(job) %></li>
+<% @user.saved_jobs.each do |savedjob| %>
+    <li>
+        <%= link_to savedjob.job.title, job_path(savedjob.job) %>
+        <%= button_to 'Delete', saved_job_path(savedjob), method: :delete %>
+        <%= button_to 'Apply', saved_job_path(savedjob), method: :get %>
+    </li>
 <% end %>
 </ul>
 
@@ -34,6 +40,7 @@
                   <%= f.hidden_field :job_type, value: job['type'] %>
                   <%= f.hidden_field :link, value: job['link'] %>
                   <%= f.hidden_field :updated, value: job['updated'] %>
+                  <%= f.hidden_field :jooble_id, value: job['id'] %>
                   <%= f.submit 'Save' %>
                 <% end %>
             </li>

@@ -9,10 +9,14 @@
 <h3>Past experience</h3>
 <ul>
 <% @user.resumes.each do |job| %>
-    <li><%= job.job_title %></li>
+    <li><%= job.job_title %>
         <ul>
             <li><%=job.description %></li>
             <li><%= job.reference %></li>
         </ul>
+        <%= button_to 'Delete', resume_path(job), method: :delete %>    
+    </li>
 <% end %>
 </ul>
+
+<%= link_to "Add more work experience", new_resume_path %>
