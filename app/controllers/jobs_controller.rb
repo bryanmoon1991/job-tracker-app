@@ -4,6 +4,7 @@ class JobsController < ApplicationController
 
     def index
         @jobs = Job.all
+        @job_select = []
         if params[:q]
             @search_term = params[:q]
             @results = search(@search_term)
@@ -17,6 +18,22 @@ class JobsController < ApplicationController
     def show
         @job = Job.find(params[:id])
     end
+    
+    def create
+        job_title = params[:job_title]
+        location = params[:location]
+        snippet = params[:snippet]
+        salary = params[:salary]
+        source = params[:source]
+        job_type = params[:type]
+        link = params[:link]
+        updated = params[:updated]
+
+        new_job = Job.create(title: job_title, location: location, snippet: snippet, salary: salary, source: source, job_type: job_type, link: link, updated: updated)
+        byebug
+        redirect_to jobs_path(new_job)
+    end
+    
 
     def search(query)        
         url = "https://jooble.org/api/#{ENV['JOOBLE_KEY']}"
@@ -36,9 +53,9 @@ class JobsController < ApplicationController
     end
 
     private
-
+    
     def job_params
-        params.require(:job).permit(:search)
+        params.require(:job).permit(:job_title, :location, :snippet, :salary, :source, :type, :link, :updated)
     end
 
 end

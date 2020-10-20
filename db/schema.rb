@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_19_174639) do
+ActiveRecord::Schema.define(version: 2020_10_20_161449) do
 
   create_table "jobs", force: :cascade do |t|
     t.string "title"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2020_10_19_174639) do
     t.string "snippet"
     t.string "salary"
     t.string "source"
-    t.string "type"
+    t.string "job_type"
     t.string "link"
     t.string "updated"
     t.datetime "created_at", precision: 6, null: false
