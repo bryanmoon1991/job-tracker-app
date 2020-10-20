@@ -9,6 +9,10 @@
 <h3>Past experience</h3>
 <ul>
 <% @user.resumes.each do |job| %>
-    <li><%= job.job_title %> (<%=job.description %>)</li>
+    <li><%= job.job_title %></li>
+        <ul>
+            <li><%=job.description %></li>
+            <li><%= job.reference %></li>
+        </ul>
 <% end %>
 </ul>

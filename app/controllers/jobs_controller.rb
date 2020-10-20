@@ -19,17 +19,7 @@ class JobsController < ApplicationController
     end
     
     def create
-        # job_title = params[:job_title]
-        # location = params[:location]
-        # snippet = params[:snippet]
-        # salary = params[:salary]
-        # source = params[:source]
-        # job_type = params[:type]
-        # link = params[:link]
-        # updated = params[:updated]
-
         new_job = Job.create(job_params)
-        byebug
         redirect_to job_path(new_job)
     end
     

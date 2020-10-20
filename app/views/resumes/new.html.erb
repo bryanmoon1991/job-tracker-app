@@ -1,0 +1,16 @@
+<h1>New Resume</h1>
+
+<%= form_for @resume do |f| %>
+    
+    <%= f.label :job_title %>
+    <%= f.text_field :job_title %><br>
+    
+    <%= f.label :description %>
+    <%= f.text_area :description %><br>
+    
+    <%= f.label :reference %>
+    <%= f.text_field :reference %><br>
+    
+    <%= f.submit %>
+    
+<% end %>
