@@ -26,12 +26,12 @@
             <li>
                 <%= job['title'] %> (<%= job['location']%>)
                 <%= form_with url: jobs_path, method: :post do |f| %>
-                  <%= f.hidden_field :job_title, value: job['title'] %>
+                  <%= f.hidden_field :title, value: job['title'] %>
                   <%= f.hidden_field :location, value: job['location'] %>
                   <%= f.hidden_field :snippet, value: job['snippet'] %>
                   <%= f.hidden_field :salary, value: job['salary'] %>
                   <%= f.hidden_field :source, value: job['source'] %>
-                  <%= f.hidden_field :type, value: job['type'] %>
+                  <%= f.hidden_field :job_type, value: job['type'] %>
                   <%= f.hidden_field :link, value: job['link'] %>
                   <%= f.hidden_field :updated, value: job['updated'] %>
                   <%= f.submit 'Save' %>

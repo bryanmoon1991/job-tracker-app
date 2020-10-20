@@ -4,7 +4,6 @@ class JobsController < ApplicationController
 
     def index
         @jobs = Job.all
-        @job_select = []
         if params[:q]
             @search_term = params[:q]
             @results = search(@search_term)
@@ -20,18 +19,18 @@ class JobsController < ApplicationController
     end
     
     def create
-        job_title = params[:job_title]
-        location = params[:location]
-        snippet = params[:snippet]
-        salary = params[:salary]
-        source = params[:source]
-        job_type = params[:type]
-        link = params[:link]
-        updated = params[:updated]
+        # job_title = params[:job_title]
+        # location = params[:location]
+        # snippet = params[:snippet]
+        # salary = params[:salary]
+        # source = params[:source]
+        # job_type = params[:type]
+        # link = params[:link]
+        # updated = params[:updated]
 
-        new_job = Job.create(title: job_title, location: location, snippet: snippet, salary: salary, source: source, job_type: job_type, link: link, updated: updated)
+        new_job = Job.create(job_params)
         byebug
-        redirect_to jobs_path(new_job)
+        redirect_to job_path(new_job)
     end
     
 
@@ -55,7 +54,7 @@ class JobsController < ApplicationController
     private
     
     def job_params
-        params.require(:job).permit(:job_title, :location, :snippet, :salary, :source, :type, :link, :updated)
+        params.permit(:title, :location, :snippet, :salary, :source, :type, :link, :updated)
     end
 
 end
