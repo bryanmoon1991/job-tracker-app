@@ -1,10 +1,13 @@
+require 'net/http'
+Dotenv.load('./.env')
+
 class JobsController < ApplicationController
-    require 'net/http'
+    # skip_before_action :authorized?, only: [:new, :index, :search]
 
 
     def index
-        @user = User.find(session[:user_id])
-        @jobs = 
+        # @user = User.find(session[:user_id])
+        # @jobs = 
         if params[:q]
             @search_term = params[:q]
             @results = search(@search_term)

@@ -3,23 +3,22 @@
     <% if @current_user %>
         Welcome <%= link_to @current_user.full_name, user_path(@current_user) %>!
         <%= link_to "Log Out", logout_path, method: :delete %>
+
+        <h2>Your Saved Jobs</h2>
+        <ul>
+        <% @current_user.saved_jobs.each do |savedjob| %>
+            <li>
+                <%= link_to savedjob.job.title, job_path(savedjob.job) %>
+                <%= button_to 'Delete', saved_job_path(savedjob), method: :delete %>
+                <%= button_to 'Apply', saved_job_path(savedjob), method: :get %>
+            </li>
+        <% end %>
+        </ul>
+
     <% else %>
         <%= link_to "Sign Up", new_user_path %>
         <%= link_to "Log In", new_login_path %>
     <% end %>
-
-
-<h2>Your Saved Jobs</h2>
-<ul>
-<% @user.saved_jobs.each do |savedjob| %>
-    <li>
-        <%= link_to savedjob.job.title, job_path(savedjob.job) %>
-        <%= button_to 'Delete', saved_job_path(savedjob), method: :delete %>
-        <%= button_to 'Apply', saved_job_path(savedjob), method: :get %>
-    </li>
-<% end %>
-</ul>
-
 <form>
     <input type="text" name="q" placeholder="search" value="<%= @seach_term%>" />
     <button type="submit">Submit!</button>
@@ -31,6 +30,7 @@
         <% @results['jobs'].each do |job| %>
             <li>
                 <%= job['title'] %> (<%= job['location']%>)
+    
                 <%= form_with url: jobs_path, method: :post do |f| %>
                   <%= f.hidden_field :title, value: job['title'] %>
                   <%= f.hidden_field :location, value: job['location'] %>

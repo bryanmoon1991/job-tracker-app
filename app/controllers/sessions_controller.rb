@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-
+    skip_before_action :authorized?, only: [:new_login, :login]
 
     def new_login
     end 
@@ -9,6 +9,8 @@ class SessionsController < ApplicationController
         
         if @user && @user.authenticate(params[:session][:password])
             session[:user_id] = @user.id 
+            # @current_user = @user
+            
             redirect_to jobs_path
         else 
             
