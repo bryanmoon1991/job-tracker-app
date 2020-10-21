@@ -21,12 +21,16 @@
         <%= link_to "Log In", new_login_path %>
     <% end %>
 <form>
-    <input type="text" name="q" placeholder="search" value="<%= @seach_term%>" />
+    <input type="text" name="keywords" placeholder="Keywords" />
+    <input type="text" name="location" placeholder="Location" />
+    <input type="number" name="radius" placeholder="Radius" />
+    <input type="number" name="salary" placeholder="Salary($33500 - $200000)" />
     <button type="submit">Submit!</button>
 </form>
 
 <% if @results %>
 <p>You searched "<%= @search_term %>"</p>
+<p>There are <%= @results["totalCount"] %> total listings</p>
 <ul>
         <% @results['jobs'].each do |job| %>
             <li>

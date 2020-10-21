@@ -1,7 +1,7 @@
 <h1><%= @job.title %></h1>
 
 <p><strong>Location: </strong><%= @job.location %></p>
-<p><strong>Snippet: </strong><%= @job.snippet %></p>
+<p><strong>Snippet: </strong><%= @job.snippet.html_safe %></p>
 
 <% if @job.salary.present? %>
     <p><strong>Salary: </strong><%= @job.salary %></p>
@@ -12,7 +12,7 @@
 <% end %>
 
 <% if @job.source.present? %>
-    <p><strong>Source: </strong><%= @job.source %> | <%= link_to "Link", @job.link %></p>
+    <p><strong>Source: </strong><%= @job.source %> | <%= link_to "Link", @job.link, target: :_blank %></p>
 <% end %>
 
 

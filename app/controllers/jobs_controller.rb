@@ -4,13 +4,17 @@ Dotenv.load('./.env')
 class JobsController < ApplicationController
     # skip_before_action :authorized?, only: [:new, :index, :search]
 
-
     def index
-        # @user = User.find(session[:user_id])
-        # @jobs = 
-        if params[:q]
-            @search_term = params[:q]
-            @results = search(@search_term)
+        # byebug
+        if params[:keywords]
+            @search_term = params[:keywords]
+            post_args = Hash.new
+            post_args[:keywords] = params[:keywords]
+            post_args[:location] = params[:location] 
+            post_args[:radius] = params[:radius]
+            post_args[:salary] = params[:salary]
+            post_args[:page] = 1
+            @results = search(post_args)
         end
     end
 
@@ -27,6 +31,7 @@ class JobsController < ApplicationController
             SavedJob.create(user:@current_user, job: new_job)
             redirect_to job_path(new_job)
         else
+
             new_job = Job.create(job_params)
             SavedJob.create(user:@current_user, job: new_job)
             redirect_to job_path(new_job)
@@ -39,7 +44,7 @@ class JobsController < ApplicationController
         #create uri for request
         uri = URI.parse(url)
         #prepare post data
-        post_args = { 'keywords': query }
+        post_args = query
         #send request to the server
         http = Net::HTTP.new(uri.host, uri.port)
         #for https
@@ -54,7 +59,7 @@ class JobsController < ApplicationController
     private
     
     def job_params
-        params.permit(:title, :location, :snippet, :salary, :source, :type, :link, :updated, :jooble_id)
+        params.permit(:title, :location, :snippet, :salary, :source, :job_type, :link, :updated, :jooble_id)
     end
 
 end
