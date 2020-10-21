@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'jobs#index'
+  root :to => 'sessions#home'
   
   resources :resumes
   resources :saved_jobs

@@ -1,5 +1,9 @@
 class SessionsController < ApplicationController
-    skip_before_action :authorized?, only: [:new_login, :login]
+    skip_before_action :authorized?, only: [:new_login, :login, :home, :logout]
+
+    def home
+        render :home
+    end
 
     def new_login
     end 
@@ -21,7 +25,7 @@ class SessionsController < ApplicationController
     
     def logout 
       session.delete(:user_id)
-      redirect_back fallback_location: jobs_path
+      redirect_back fallback_location: root_path 
     end 
 
 end
