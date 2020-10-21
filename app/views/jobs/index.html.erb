@@ -2,9 +2,10 @@
 
     <% if @current_user %>
         Welcome <%= link_to @current_user.full_name, user_path(@current_user) %>!
-        <%= link_to "Log Out", logout_path, method: :delete %>
-
-        <h2>Your Saved Jobs</h2>
+        
+        <% if @current_user.saved_jobs.length > 0 %>
+            <h3>Your Saved Jobs</h3>
+        <% end %>
         <ul>
         <% @current_user.saved_jobs.each do |savedjob| %>
             <li>

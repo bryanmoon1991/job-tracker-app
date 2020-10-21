@@ -7,12 +7,12 @@
     <p><strong>Salary: </strong><%= @job.salary %></p>
 <% end %>
 
-<% if @job.type.present? %>
-    <p><strong>type: </strong><%= @job.type %></p>
+<% if @job.job_type.present? %>
+    <p><strong>type: </strong><%= @job.job_type %></p>
 <% end %>
 
 <% if @job.source.present? %>
-    <p><strong>Source: </strong><%= @job.source %> | <%= link_to "Link" @job.link %>
+    <p><strong>Source: </strong><%= @job.source %> | <%= link_to "Link", @job.link %></p>
 <% end %>
 
 
