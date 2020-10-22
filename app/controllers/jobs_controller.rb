@@ -15,9 +15,11 @@ class JobsController < ApplicationController
             post_args[:salary] = params[:salary]
             post_args[:page] = 1
             @results = search(post_args)
+
         end
     end
 
+ 
     def new
         @job_search
     end

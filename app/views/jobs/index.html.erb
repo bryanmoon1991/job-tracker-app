@@ -24,11 +24,11 @@
     
     
 <form>
-    <input type="text" name="keywords" placeholder="e.g., Engineer" />
-    <input type="text" name="location" placeholder="Location" />
-    <input type="number" name="radius" placeholder="Radius" />
-    <input type="number" name="salary" placeholder="Salary ($33500 - $200000)" />
-    <button type="submit">Seach jobs</button>
+    <input type="text" name="keywords" placeholder="e.g., Engineer" required />
+    <input type="text" name="location" placeholder="Location" required />
+    <input type="number" name="radius" placeholder="Radius" required />
+    <input type="number" name="salary" placeholder="Salary ($33500 - $200000)" required />
+    <button type="submit">Search jobs</button>
 </form>
 
 <% if @results %>
