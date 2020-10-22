@@ -1,42 +1,50 @@
-<h1>Jobs</h1>
-
-    <% if @current_user %>
-        Welcome <%= link_to @current_user.full_name, user_path(@current_user) %>!
+<% if @current_user %>
+        <h4 id="welcome">Welcome <%= link_to @current_user.full_name, user_path(@current_user) %>!</h4>
         
         <% if @current_user.saved_jobs.length > 0 %>
             <h3>Your Saved Jobs</h3>
         <% end %>
-        <ul>
+        <div class="outer"><ul>
         <% @current_user.saved_jobs.each do |savedjob| %>
             <li>
-                <%= link_to savedjob.job.title, job_path(savedjob.job) %>
-                <%= button_to 'Delete', saved_job_path(savedjob), method: :delete %>
-                <%= button_to 'Apply', saved_job_path(savedjob), method: :get %>
+                <div class="inner"><div class="job_title"><%= link_to savedjob.job.title, job_path(savedjob.job) %></div></div>
+                <div class="inner"><%= button_to 'Delete', saved_job_path(savedjob), method: :delete %></div>
+                <div class="inner"><%= button_to 'Apply', saved_job_path(savedjob), method: :get %></div>
             </li>
         <% end %>
-        </ul>
+        </ul></div>
 
     <% else %>
         <%= link_to "Sign Up", new_user_path %>
         <%= link_to "Log In", new_login_path %>
     <% end %>
+    
+    
+<hr class="dashed">
+    
+    
 <form>
-    <input type="text" name="keywords" placeholder="Keywords" />
+    <input type="text" name="keywords" placeholder="e.g., Engineer" />
     <input type="text" name="location" placeholder="Location" />
     <input type="number" name="radius" placeholder="Radius" />
-    <input type="number" name="salary" placeholder="Salary($33500 - $200000)" />
-    <button type="submit">Submit!</button>
+    <input type="number" name="salary" placeholder="Salary ($33500 - $200000)" />
+    <button type="submit">Seach jobs</button>
 </form>
 
 <% if @results %>
 <p>You searched "<%= @search_term %>"</p>
 <p>There are <%= @results["totalCount"] %> total listings</p>
-<ul>
+
+<div class="outer"><ul>
         <% @results['jobs'].each do |job| %>
             <li>
-                <%= job['title'] %> (<%= job['location']%>)
+                <div class="inner">
+                    <div class="job_title">
+                        <%= job['title'] %> (<%= job['location'] %>)
+                    </div>
+                </div>
     
-                <%= form_with url: jobs_path, method: :post do |f| %>
+                <div class="inner"><%= form_with url: jobs_path, method: :post do |f| %>
                   <%= f.hidden_field :title, value: job['title'] %>
                   <%= f.hidden_field :location, value: job['location'] %>
                   <%= f.hidden_field :snippet, value: job['snippet'] %>
@@ -47,9 +55,9 @@
                   <%= f.hidden_field :updated, value: job['updated'] %>
                   <%= f.hidden_field :jooble_id, value: job['id'] %>
                   <%= f.submit 'Save' %>
-                <% end %>
+                <% end %></div>
             </li>
         <%end%>
-</ul>
+</ul></div>
 
 <% end %>
