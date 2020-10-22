@@ -1,4 +1,4 @@
-<h1>Apply to <%= @saved_job.job.title %></h1>
+<h1>Apply to <em><%= @saved_job.job.title %></em></h1>
 
 
 <h3>Your Resume</h3>
@@ -8,15 +8,18 @@
         <%= f.label :job_title %>
         <%= f.text_field :job_title %><br>
         
-        <%= f.label :description %>
-        <%= f.text_field :description %><br>
+        <div class="resume_desc">
+            <%= f.label :description %>
+            <%= f.text_area :description %><br>
+        </div>
         
         <%= f.label :reference %>
         <%= f.text_field :reference %><br>
-        ==========================
+        <hr class="dashed" align="left" width="400px"/>
     <% end %>
     
 <% end %>
 
-Email: <%= text_field_tag :email %>
-<%= button_to 'Submit' %>
+<p>Email: <%= text_field_tag :email %></p>
+
+<span class="resume_submit"><%= button_to 'Submit' %></span>

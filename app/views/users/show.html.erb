@@ -1,15 +1,33 @@
 <h1><%= @user.full_name %></h1>
 
-<p><bold>Username: </bold><%= @user.username %></p>
-<p><bold>Email: </bold><%= @user.email %></p>
-<p><bold>Age: </bold><%= @user.age %></p>
-<p><bold>Address: </bold><%= @user.address %></p>
-<p><bold>Phone: </bold><%= @user.phone_number %></p>
+<p> 
+    <span class="profile_label"><strong>Username: </strong></span>
+    <span class="profile_data"><%= @user.username %></span>
+</p>
+
+<p>
+    <span class="profile_label"><strong>Email: </strong></span>
+    <span class="profile_data"><%= @user.email %></span>
+</p>
+<p>
+    <span class="profile_label"><strong>Age: </strong></span>
+    <span class="profile_data"><%= @user.age %></span>
+</p>
+<p>
+    <span class="profile_label"><strong>Address: </strong></span>
+    <span class="profile_data"><%= @user.address %></span>
+</p>
+<p>
+    <span class="profile_label"><strong>Phone: </strong></span>
+    <span class="profile_data"><%= @user.phone_number %></span>
+</p>
+
+<hr class="dashed">
 
 <h3>Past experience</h3>
 <ul>
 <% @user.resumes.each do |job| %>
-    <li><%= job.job_title %>
+    <li><strong><%= job.job_title %></strong>
         <ul>
             <li><%=job.description %></li>
             <li><%= job.reference %></li>

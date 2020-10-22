@@ -15,5 +15,49 @@
   @import "bootstrap";
   
 body {
-  margin: 40px;
+  padding: 40px;
+}
+
+label {
+  width: 150px;
+}
+
+div label{
+  width: 150px;
+  vertical-align: top;
+}
+
+li {
+  margin: 10px;
+}
+
+div.outer
+{
+    width:75%;
+    text-align: left;
+}
+div.inner
+{
+    display: inline-block;
+}
+
+.job_title {
+  width: 400px;
+}
+
+#welcome {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+hr.dashed {
+  border-top: 3px dashed #bbb;
+}
+
+form.button_to {
+  
+}
+
+.profile_label {
+  width: 200px;
 }

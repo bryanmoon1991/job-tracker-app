@@ -1,12 +1,14 @@
-<h1>New Resume</h1>
+<h1>Add Work Experience</h1>
 
 <%= form_for @resume do |f| %>
     
     <%= f.label :job_title %>
     <%= f.text_field :job_title %><br>
     
-    <%= f.label :description %>
-    <%= f.text_area :description %><br>
+    <div id="resume_desc">
+        <%= f.label :description %>
+        <%= f.text_area :description %>
+    </div>
     
     <%= f.label :reference %>
     <%= f.text_field :reference %><br>
