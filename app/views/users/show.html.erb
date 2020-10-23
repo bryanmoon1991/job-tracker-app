@@ -1,3 +1,8 @@
+<% if flash[:wrong_user] %>
+    <p style="color:red;"><%= flash[:wrong_user] %></p>
+  <% end %>
+
+
 <h1><%= @user.full_name %></h1>
 
 <p> 
