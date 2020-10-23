@@ -6,7 +6,11 @@ class UsersController < ApplicationController
         @users = User.all
     end
     
-    def show    
+    def show   
+        if @current_user != @user 
+            flash[:wrong_user] = "You can only see your own profile"
+            redirect_to user_path(@current_user)
+        end 
     end
     
     def new
@@ -17,6 +21,7 @@ class UsersController < ApplicationController
         @user = User.new(user_params(:first_name, :last_name, :username, :password, :age, :email, :address, :phone_number))
 
         if @user.save
+            session[:user_id] = @user.id
             redirect_to user_path(@user)
         else
             flash[:errors] = @user.errors.full_messages
