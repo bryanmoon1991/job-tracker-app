@@ -27,6 +27,9 @@
     <span class="profile_data"><%= @user.phone_number %></span>
 </p>
 
+<%= link_to "Edit Profile", edit_user_path(@user) %><br>
+
+
 <hr class="dashed">
 
 <h3>Past experience</h3>
@@ -41,7 +44,5 @@
     </li>
 <% end %>
 </ul>
-
-<%= link_to "Edit Profile", edit_user_path(@user) %><br>
 
 <%= link_to "Add more work experience", new_resume_path %>
