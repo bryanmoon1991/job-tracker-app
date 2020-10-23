@@ -9,8 +9,10 @@
             <li>
                 <div class="inner"><span class="job_title">
                     <%= link_to savedjob.job.title, job_path(savedjob.job) %>
-                    <% if savedjob.job.total_savers > 1 %>
-                        (Saved by <%= savedjob.job.total_savers - 1 %> other users)
+                    <% if savedjob.job.total_savers == 2 %>
+                        (Saved by <strong>1</strong> other user)
+                    <% elsif savedjob.job.total_savers > 2 %>
+                    (Saved by <strong><%= savedjob.job.total_savers - 1 %></strong> other users)
                     <% end %>
                     </span>
                 </div>
@@ -37,7 +39,7 @@
 
     <button type="submit">Search jobs</button>
 </form>
-
+<br>
 <% if @results %>
 <p>You searched "<%= @search_term %>"</p>
 <p>There are <%= @results["totalCount"] %> total listings</p>
