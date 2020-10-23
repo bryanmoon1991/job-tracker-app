@@ -32,7 +32,7 @@
             <li><%=job.description %></li>
             <li><%= job.reference %></li>
         </ul>
-        <%= button_to 'Delete', resume_path(job), method: :delete %>    
+        <span class="remove_button"><%= button_to 'Remove', resume_path(job), method: :delete %></span>    
     </li>
 <% end %>
 </ul>
